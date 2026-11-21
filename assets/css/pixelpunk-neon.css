@@ -1,0 +1,137 @@
+/* ZOKAI — PIXELPUNK NEON
+   Base = tema pixel (fontes, tamanhos, leitura, formas).
+   Cyberpunk entra só na paleta (escura, neon "dessaturado") e em pequenos detalhes de HUD.
+   Ative com `zokai.style: pixelpunk-neon` no _config.yml. */
+:root[data-style="pixelpunk-neon"],
+:root[data-style="pixelpunk-neon"][data-theme="light"],
+:root[data-style="pixelpunk-neon"][data-theme="dark"]{
+  --bg:#0b0919; --bg-2:#100d24; --surface:#141030; --surface-2:#1d1844;
+  --text:#dde6f2; --muted:#9296ba; --border:#2c2760; --shadow:#0009;
+  --pink:#e8559f; --magenta:#b455d6; --purple:#6f52e0; --teal:#4fd1d9; --yellow:#e5c453;
+  --link:#5fd8df;
+  --grad:linear-gradient(135deg,#8f2f6c,#4b3aa8);
+  color-scheme:dark;
+}
+[data-style="pixelpunk-neon"] #theme-toggle{display:none}
+
+/* fundo: brilho discreto + grade de pixels quase invisível */
+[data-style="pixelpunk-neon"] body{
+  background:
+    linear-gradient(#4fd1d907 2px,transparent 2px) 0 0/32px 32px,
+    linear-gradient(90deg,#4fd1d907 2px,transparent 2px) 0 0/32px 32px,
+    radial-gradient(900px 500px at 88% -10%,color-mix(in srgb,var(--pink) 12%,transparent),transparent 60%),
+    radial-gradient(700px 500px at -10% 12%,#4fd1d91a,transparent 60%),
+    var(--bg);
+  background-attachment:fixed;
+}
+
+/* títulos: mesmo desenho do pixel, com sombra roxa suave */
+[data-style="pixelpunk-neon"] .page-title,
+[data-style="pixelpunk-neon"] .post-title{color:var(--pink);text-shadow:4px 4px 0 #3a2a80}
+[data-style="pixelpunk-neon"] .hero-title{color:var(--pink);text-shadow:6px 6px 0 #3a2a80,12px 12px 0 #00000055}
+[data-style="pixelpunk-neon"] .blink{color:var(--teal)}
+[data-style="pixelpunk-neon"] .brand-name{color:var(--pink);text-shadow:3px 3px 0 #3a2a80}
+[data-style="pixelpunk-neon"] .footer-brand{text-shadow:3px 3px 0 #3a2a80}
+[data-style="pixelpunk-neon"] .list-head .page-title{color:var(--c)}
+
+/* toques de HUD cyberpunk (discretos) */
+[data-style="pixelpunk-neon"] .eyebrow::before{content:"[ "}
+[data-style="pixelpunk-neon"] .eyebrow::after{content:" ]"}
+[data-style="pixelpunk-neon"] .section-title::before{content:"// ";color:var(--pink)}
+[data-style="pixelpunk-neon"] .site-header{border-bottom-color:#2c2760;box-shadow:0 2px 0 #4fd1d955}
+[data-style="pixelpunk-neon"] .nav a[aria-current="page"]{background:#4fd1d91a}
+
+/* cards: igual ao pixel + barrinha lateral neon fraca */
+[data-style="pixelpunk-neon"] .card{border-color:var(--border);box-shadow:4px 4px 0 #000a}
+[data-style="pixelpunk-neon"] .card::before{content:"";position:absolute;left:-4px;top:12px;bottom:12px;width:4px;background:#4fd1d9aa;transition:background .12s}
+[data-style="pixelpunk-neon"] .card:hover{border-color:var(--pink);box-shadow:8px 8px 0 #3a2a80}
+[data-style="pixelpunk-neon"] .card:hover::before{background:var(--pink)}
+[data-style="pixelpunk-neon"] .cat-card{border-color:color-mix(in srgb,var(--c) 45%,var(--border))}
+[data-style="pixelpunk-neon"] .cat-card::before{background:var(--c)}
+[data-style="pixelpunk-neon"] .cat-card:hover{border-color:var(--c);box-shadow:8px 8px 0 color-mix(in srgb,var(--c) 40%,#000)}
+[data-style="pixelpunk-neon"] .featured .card{background:var(--grad);border-color:#dde6f2aa}
+[data-style="pixelpunk-neon"] .featured .card::before{display:none}
+[data-style="pixelpunk-neon"] .featured .chip{background:#0b0919}
+
+/* chips: cores das categorias mais calmas */
+[data-style="pixelpunk-neon"] .chip{border-color:color-mix(in srgb,var(--c) 65%,var(--bg));background:color-mix(in srgb,var(--c) 10%,transparent);color:color-mix(in srgb,var(--c) 85%,var(--text))}
+[data-style="pixelpunk-neon"] .chip:hover,[data-style="pixelpunk-neon"] .chip.is-active{background:var(--c);color:#0b0919}
+[data-style="pixelpunk-neon"] .chip-playlist{border-style:dashed}
+
+/* botões */
+[data-style="pixelpunk-neon"] .btn{background:var(--teal);color:#0b0919;border-color:#0b0919;box-shadow:4px 4px 0 #3a2a80}
+[data-style="pixelpunk-neon"] .btn:hover{color:#0b0919;box-shadow:2px 2px 0 #3a2a80}
+[data-style="pixelpunk-neon"] .btn-ghost{background:transparent;color:var(--text);border-color:var(--text);box-shadow:none}
+
+/* hero / busca */
+[data-style="pixelpunk-neon"] .hero-logo{filter:drop-shadow(0 0 28px color-mix(in srgb,var(--pink) 25%,transparent))}
+[data-style="pixelpunk-neon"] .search-form input:focus{box-shadow:4px 4px 0 #4fd1d980}
+[data-style="pixelpunk-neon"] mark{background:#e5c453;color:#0b0919}
+
+/* ranking, playlists, post */
+[data-style="pixelpunk-neon"] .rank li{border-color:var(--border)}
+[data-style="pixelpunk-neon"] .playlist-box,[data-style="pixelpunk-neon"] .playlist-list li{box-shadow:4px 4px 0 #000a}
+[data-style="pixelpunk-neon"] .playlist-list li::before{color:#0b0919}
+[data-style="pixelpunk-neon"] .prose pre{background:#070613;box-shadow:4px 4px 0 #3a2a80}
+[data-style="pixelpunk-neon"] .prose code{background:var(--surface-2)}
+[data-style="pixelpunk-neon"] .prose blockquote{border-left-color:var(--pink)}
+[data-style="pixelpunk-neon"] .progress{background:var(--grad)}
+[data-style="pixelpunk-neon"] .newsletter{border-color:#dde6f2aa}
+[data-style="pixelpunk-neon"] .site-footer{background:var(--bg-2)}
+
+/* cores vindas dos dados (playlists/categorias) suavizadas */
+[data-style="pixelpunk-neon"] .playlist-box,[data-style="pixelpunk-neon"] .playlist-list li{border-color:color-mix(in srgb,var(--c) 50%,var(--border))}
+[data-style="pixelpunk-neon"] .playlist-box summary,[data-style="pixelpunk-neon"] .playlist-box strong{color:color-mix(in srgb,var(--c) 80%,var(--text))}
+[data-style="pixelpunk-neon"] .playlist-list li::before{background:color-mix(in srgb,var(--c) 80%,var(--bg))}
+
+/* ===== NEON: um pouquinho mais cyberpunk que o pixelpunk ===== */
+:root[data-style="pixelpunk-neon"],
+:root[data-style="pixelpunk-neon"][data-theme="light"],
+:root[data-style="pixelpunk-neon"][data-theme="dark"]{
+  --bg:#080616; --bg-2:#0d0a20; --surface:#120e2e; --border:#302a6c;
+  --pink:color-mix(in srgb,#f2459f 70%,#9b6bff 30%); --teal:#3de0ea; --purple:#7a52ff; --link:#4fe3ec;
+  --grad:linear-gradient(135deg,#a02a74,#4a38c0);
+}
+/* scanlines bem sutis */
+[data-style="pixelpunk-neon"] body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:100;
+  background:repeating-linear-gradient(0deg,#0000 0 3px,#00000016 3px 4px)}
+/* header com linha gradiente rosa → ciano e etiqueta de "rede" */
+[data-style="pixelpunk-neon"] .site-header{border-bottom:3px solid;border-image:linear-gradient(90deg,var(--pink),#7a52ff 50%,#3de0ea) 1;box-shadow:0 0 18px #3de0ea22}
+[data-style="pixelpunk-neon"] .brand::after{content:"// NET";font-family:"Share Tech Mono",ui-monospace,monospace;font-size:.72rem;color:var(--teal);opacity:.75;letter-spacing:.1em;margin-left:.15rem;white-space:nowrap}
+@media (max-width:1000px){[data-style="pixelpunk-neon"] .brand::after{display:none}}
+[data-style="pixelpunk-neon"] .nav a[aria-current="page"]{border-color:var(--teal);box-shadow:0 0 10px #3de0ea33}
+/* títulos: leve aberração cromática e glitch raro só na home */
+[data-style="pixelpunk-neon"] .page-title,[data-style="pixelpunk-neon"] .post-title{text-shadow:4px 4px 0 #3a2a80,-2px 0 #3de0ea88}
+[data-style="pixelpunk-neon"] .hero-title{text-shadow:6px 6px 0 #3a2a80,-3px 0 #3de0ea99,12px 12px 0 #00000055;animation:pn-glitch 8s infinite steps(1)}
+@keyframes pn-glitch{
+  0%,94%,100%{transform:none}
+  95%{transform:translate(-5px,0);text-shadow:6px 6px 0 #3a2a80,8px 0 #3de0ea}
+  96%{transform:translate(5px,0);text-shadow:6px 6px 0 #3a2a80,-8px 0 var(--pink)}
+  97%{transform:none}
+}
+@media (prefers-reduced-motion:reduce){[data-style="pixelpunk-neon"] .hero-title{animation:none}}
+/* cards: marca de canto estilo HUD + brilho no hover */
+[data-style="pixelpunk-neon"] .card::after{content:"";position:absolute;right:6px;top:6px;width:14px;height:14px;border-top:2px solid #3de0ea99;border-right:2px solid #3de0ea99;pointer-events:none;transition:border-color .12s}
+[data-style="pixelpunk-neon"] .card:hover::after{border-color:var(--pink)}
+[data-style="pixelpunk-neon"] .card:hover{box-shadow:8px 8px 0 #3a2a80,0 0 22px color-mix(in srgb,var(--pink) 20%,transparent)}
+[data-style="pixelpunk-neon"] .cat-card:hover{box-shadow:8px 8px 0 color-mix(in srgb,var(--c) 40%,#000),0 0 22px color-mix(in srgb,var(--c) 30%,transparent)}
+[data-style="pixelpunk-neon"] .card-meta{text-transform:uppercase;letter-spacing:.06em;font-size:.76rem}
+/* botão e busca com brilho */
+[data-style="pixelpunk-neon"] .btn:hover{box-shadow:2px 2px 0 #3a2a80,0 0 16px #3de0ea66}
+[data-style="pixelpunk-neon"] .search-form input{border-color:#3de0ea88}
+[data-style="pixelpunk-neon"] .search-form input:focus{border-color:var(--teal);box-shadow:4px 4px 0 #3de0ea80,0 0 16px #3de0ea44}
+/* mascote com brilho duplo rosa/ciano */
+[data-style="pixelpunk-neon"] .hero-logo{filter:drop-shadow(0 0 26px color-mix(in srgb,var(--pink) 40%,transparent)) drop-shadow(0 0 54px #3de0ea40)}
+/* código e rodapé */
+[data-style="pixelpunk-neon"] .prose pre{border-color:#3de0ea99;box-shadow:4px 4px 0 #3a2a80,0 0 18px #3de0ea22}
+[data-style="pixelpunk-neon"] .site-footer{border-top:3px solid;border-image:linear-gradient(90deg,#3de0ea,#7a52ff 50%,var(--pink)) 1;box-shadow:0 -2px 18px color-mix(in srgb,var(--pink) 13%,transparent)}
+[data-style="pixelpunk-neon"] .progress{box-shadow:0 0 10px var(--pink)}
+
+/* título "ZOKAI" e títulos de página: rosa suavizado, mais perto do lilás do degradê do destaque */
+[data-style="pixelpunk-neon"]{--title:color-mix(in srgb,#f2459f 60%,#9b6bff 40%)}
+[data-style="pixelpunk-neon"] .hero-title,
+[data-style="pixelpunk-neon"] .brand-name,
+[data-style="pixelpunk-neon"] .footer-brand,
+[data-style="pixelpunk-neon"] .page-title,
+[data-style="pixelpunk-neon"] .post-title{color:var(--title)}
+[data-style="pixelpunk-neon"] .list-head{--c:var(--title)}
