@@ -1,0 +1,96 @@
+---
+layout: default
+body_class: is-post
+---
+{%- assign words = content | number_of_words -%}
+{%- assign mins = words | divided_by: site.zokai.words_per_minute | plus: 1 -%}
+<div class="progress" id="progress" aria-hidden="true"></div>
+<article class="post">
+  <header class="post-head">
+    <div class="chips">
+      {% if page.playlist_name %}<a class="chip chip-playlist" style="--c: {{ page.playlist_color }}" href="{{ page.playlist_url | relative_url }}">▶ {{ page.playlist_name }} · {{ page.playlist_pos }}/{{ page.playlist_total }}</a>{% endif %}
+      {% for c in page.categories %}
+        {% assign meta = site.data.categories[c] %}
+        <a class="chip" style="--c: {{ meta.color | default: '#ff2a7a' }}" href="{{ '/categorias/' | append: c | append: '/' | relative_url }}">{{ meta.icon }} {{ meta.name | default: c }}</a>
+      {% endfor %}
+    </div>
+    <h1 class="post-title">{{ page.title | escape }}</h1>
+    {% if page.description %}<p class="lede">{{ page.description }}</p>{% endif %}
+    <p class="card-meta">
+      <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%d/%m/%Y" }}</time>
+      <span>·</span><span>{{ mins }} min de leitura</span>
+      {% if page.last_modified_at %}<span>·</span><span>atualizado em {{ page.last_modified_at | date: "%d/%m/%Y" }}</span>{% endif %}
+    </p>
+  </header>
+
+  {% if page.playlist_name %}
+  <details class="playlist-box" style="--c: {{ page.playlist_color }}" open>
+    <summary>▶ Playlist: <a href="{{ page.playlist_url | relative_url }}">{{ page.playlist_name }}</a> <span class="muted small">(post {{ page.playlist_pos }} de {{ page.playlist_total }})</span></summary>
+    <ol>
+      {% for pp in page.playlist_posts %}
+        <li>{% if pp.url == page.url %}<strong aria-current="page">{{ pp.title }}</strong>{% else %}<a href="{{ pp.url | relative_url }}">{{ pp.title }}</a>{% endif %}</li>
+      {% endfor %}
+    </ol>
+  </details>
+  {% endif %}
+
+  <div class="post-body">
+    <div class="prose" id="post-content">{{ content }}</div>
+    <aside class="toc" id="toc" aria-label="Neste post" hidden>
+      <p class="toc-title">NESTE POST</p>
+      <ul id="toc-list"></ul>
+    </aside>
+  </div>
+
+  {% if page.tags.size > 0 %}
+  <p class="tags">
+    {% for t in page.tags %}{% assign ts = t | slugify %}<a href="{{ '/tags/' | append: ts | append: '/' | relative_url }}">#{{ t }}</a>{% endfor %}
+  </p>
+  {% endif %}
+
+  <div class="share">
+    <span class="muted small">Curtiu? Compartilhe:</span>
+    <a href="https://bsky.app/intent/compose?text={{ page.title | url_encode }}%20{{ page.url | absolute_url | url_encode }}" rel="noopener">Bluesky</a>
+    <a href="https://twitter.com/intent/tweet?text={{ page.title | url_encode }}&url={{ page.url | absolute_url | url_encode }}" rel="noopener">X</a>
+    <a href="mailto:?subject={{ page.title | url_encode }}&body={{ page.url | absolute_url | url_encode }}">E-mail</a>
+    <button type="button" id="copy-link">Copiar link</button>
+  </div>
+
+  {% include newsletter.html %}
+
+  {%- comment -%} Posts relacionados: mesma categoria/tag, exceto o atual {%- endcomment -%}
+  {% assign related = "" | split: "" %}
+  {% for p in site.posts %}
+    {% if p.url != page.url %}
+      {% assign shared_c = p.categories | where_exp: "c", "page.categories contains c" %}
+      {% assign shared_t = p.tags | where_exp: "t", "page.tags contains t" %}
+      {% if shared_c.size > 0 or shared_t.size > 0 %}{% assign related = related | push: p %}{% endif %}
+    {% endif %}
+  {% endfor %}
+  {% if related.size > 0 %}
+  <section class="section">
+    <h2 class="section-title">Leia também</h2>
+    <div class="grid">{% for p in related limit: 3 %}{% include post-card.html post=p %}{% endfor %}</div>
+  </section>
+  {% endif %}
+
+  {% if page.playlist_name %}
+    {% assign prev_post = page.playlist_prev %}{% assign next_post = page.playlist_next %}
+  {% else %}
+    {% assign prev_post = page.previous %}{% assign next_post = page.next %}
+  {% endif %}
+  <nav class="pager" aria-label="Navegação entre posts">
+    {% if prev_post %}<a class="pager-prev" href="{{ prev_post.url | relative_url }}"><span>◀ {% if page.playlist_name %}anterior na playlist{% else %}anterior{% endif %}</span>{{ prev_post.title }}</a>{% else %}<span></span>{% endif %}
+    {% if next_post %}<a class="pager-next" href="{{ next_post.url | relative_url }}"><span>{% if page.playlist_name %}próximo na playlist{% else %}próximo{% endif %} ▶</span>{{ next_post.title }}</a>{% endif %}
+  </nav>
+
+  {% if site.zokai.giscus.repo != "" %}
+  <section class="comments">
+    <script src="https://giscus.app/client.js"
+      data-repo="{{ site.zokai.giscus.repo }}" data-repo-id="{{ site.zokai.giscus.repo_id }}"
+      data-category="{{ site.zokai.giscus.category }}" data-category-id="{{ site.zokai.giscus.category_id }}"
+      data-mapping="pathname" data-reactions-enabled="1" data-theme="preferred_color_scheme" data-lang="pt"
+      crossorigin="anonymous" async></script>
+  </section>
+  {% endif %}
+</article>

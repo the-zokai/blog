@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="{{ site.lang | default: 'pt-BR' }}">
+<head>
+{% include head.html %}
+</head>
+<body class="{{ page.body_class }}">
+<a class="skip" href="#main">Ir para o conteúdo</a>
+{% include header.html %}
+<main id="main" class="wrap">
+{{ content }}
+</main>
+{% include footer.html %}
+</body>
+</html>

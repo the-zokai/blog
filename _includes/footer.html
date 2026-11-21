@@ -1,0 +1,21 @@
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <div>
+      <p class="footer-brand">ZOKAI</p>
+      <p class="muted">{{ site.tagline }}</p>
+    </div>
+    <div class="footer-links">
+      <a href="{{ '/feed.xml' | relative_url }}">RSS</a>
+      <a href="{{ '/arquivo/' | relative_url }}">Arquivo</a>
+      <a href="{{ '/sobre/' | relative_url }}">Sobre</a>
+      {% if site.zokai.social.github != "" %}<a rel="me" href="{{ site.zokai.social.github }}">GitHub</a>{% endif %}
+      {% if site.zokai.social.mastodon != "" %}<a rel="me" href="{{ site.zokai.social.mastodon }}">Mastodon</a>{% endif %}
+      {% if site.zokai.social.bluesky != "" %}<a rel="me" href="{{ site.zokai.social.bluesky }}">Bluesky</a>{% endif %}
+    </div>
+    <p class="muted small">© {{ 'now' | date: '%Y' }} {{ site.author.name }} · feito com Jekyll e muito pixel</p>
+  </div>
+</footer>
+{% if site.zokai.goatcounter != "" %}
+<script data-goatcounter="https://{{ site.zokai.goatcounter }}.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+{% endif %}
+<script src="{{ '/assets/js/main.js' | relative_url }}" defer></script>

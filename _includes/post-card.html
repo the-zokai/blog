@@ -1,0 +1,20 @@
+{%- comment -%} Uso: {% include post-card.html post=post %} {%- endcomment -%}
+{%- assign p = include.post -%}
+{%- assign words = p.content | number_of_words -%}
+{%- assign mins = words | divided_by: site.zokai.words_per_minute | plus: 1 -%}
+<article class="card" data-date="{{ p.date | date: '%s' }}" data-views="{{ p.views | default: 0 }}" data-title="{{ p.title | downcase | escape }}">
+  <div class="card-meta">
+    <time datetime="{{ p.date | date_to_xmlschema }}">{{ p.date | date: "%d/%m/%Y" }}</time>
+    <span>·</span><span>{{ mins }} min</span>
+    {% if p.views > 0 %}<span>·</span><span>{{ p.views }} views</span>{% endif %}
+  </div>
+  <h3 class="card-title"><a href="{{ p.url | relative_url }}">{{ p.title | escape }}</a></h3>
+  <p class="card-excerpt">{{ p.description | default: p.excerpt | strip_html | truncate: 160 }}</p>
+  <div class="chips">
+    {% if p.playlist_name %}<a class="chip chip-playlist" style="--c: {{ p.playlist_color }}" href="{{ p.playlist_url | relative_url }}">▶ {{ p.playlist_name }} · {{ p.playlist_pos }}/{{ p.playlist_total }}</a>{% endif %}
+    {% for c in p.categories %}
+      {% assign meta = site.data.categories[c] %}
+      <a class="chip" style="--c: {{ meta.color | default: '#ff2a7a' }}" href="{{ '/categorias/' | append: c | append: '/' | relative_url }}">{{ meta.icon }} {{ meta.name | default: c }}</a>
+    {% endfor %}
+  </div>
+</article>

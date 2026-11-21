@@ -1,0 +1,20 @@
+---
+layout: default
+title: Todos os posts
+permalink: /posts/
+description: Todos os posts do blog, com ordenação.
+---
+<header class="list-head">
+  <p class="eyebrow">ARQUIVO VIVO</p>
+  <h1 class="page-title">Todos os posts</h1>
+  <div class="sorter" role="group" aria-label="Ordenar por">
+    <span class="muted small">Ordenar:</span>
+    <button type="button" class="chip is-active" data-sort="date-desc">Mais recentes</button>
+    <button type="button" class="chip" data-sort="date-asc">Mais antigos</button>
+    <button type="button" class="chip" data-sort="views">Mais lidos</button>
+    <button type="button" class="chip" data-sort="title">A–Z</button>
+  </div>
+</header>
+<div class="list" id="sortable">
+  {% for p in site.posts %}{% include post-card.html post=p %}{% endfor %}
+</div>

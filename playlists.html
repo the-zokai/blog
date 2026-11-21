@@ -1,0 +1,21 @@
+---
+layout: default
+title: Playlists
+permalink: /playlists/
+description: Séries de posts para ler em ordem.
+---
+<header class="list-head">
+  <p class="eyebrow">PRESS PLAY</p>
+  <h1 class="page-title">Playlists</h1>
+  <p class="lede">Séries de posts feitas para serem lidas em ordem.</p>
+</header>
+<div class="grid">
+  {% for pl in site.data.playlist_list %}
+    <a class="card cat-card" style="--c: {{ pl.color }}" href="{{ '/playlists/' | append: pl.id | append: '/' | relative_url }}">
+      <span class="cat-icon">▶</span>
+      <h3 class="card-title">{{ pl.name }}</h3>
+      <p class="card-excerpt">{{ pl.desc }}</p>
+      <p class="muted small">{{ pl.count }} post{% if pl.count != 1 %}s{% endif %}</p>
+    </a>
+  {% endfor %}
+</div>

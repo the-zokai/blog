@@ -1,0 +1,19 @@
+---
+layout: default
+---
+<header class="list-head" style="--c: {{ page.term_color }}">
+  <p class="eyebrow">{{ page.taxonomy | replace: 'category', 'CATEGORIA' | replace: 'tag', 'TAG' }}</p>
+  <h1 class="page-title"><span class="term-icon">{{ page.term_icon }}</span> {{ page.term_name }}</h1>
+  <p class="lede">{{ page.term_desc }}</p>
+  <p class="muted small">{{ page.total }} post{% if page.total != 1 %}s{% endif %}</p>
+</header>
+<div class="list">
+  {% for p in page.posts_slice %}{% include post-card.html post=p %}{% endfor %}
+</div>
+{% if page.page_count > 1 %}
+<nav class="pager" aria-label="Paginação">
+  {% if page.prev_url %}<a class="pager-prev" href="{{ page.prev_url | relative_url }}"><span>◀ mais novos</span>página {{ page.page_num | minus: 1 }}</a>{% else %}<span></span>{% endif %}
+  {% if page.next_url %}<a class="pager-next" href="{{ page.next_url | relative_url }}"><span>mais antigos ▶</span>página {{ page.page_num | plus: 1 }}</a>{% endif %}
+</nav>
+{% endif %}
+<p><a href="{{ '/categorias/' | relative_url }}">← todas as categorias</a></p>

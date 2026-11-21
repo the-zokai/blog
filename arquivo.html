@@ -1,0 +1,21 @@
+---
+layout: default
+title: Arquivo
+permalink: /arquivo/
+description: Todos os posts agrupados por ano.
+---
+<header class="list-head">
+  <p class="eyebrow">SAVE FILES</p>
+  <h1 class="page-title">Arquivo</h1>
+</header>
+{% assign by_year = site.posts | group_by_exp: "p", "p.date | date: '%Y'" %}
+{% for y in by_year %}
+  <section class="section">
+    <h2 class="section-title">{{ y.name }} <small class="muted">({{ y.items.size }})</small></h2>
+    <ul class="archive">
+      {% for p in y.items %}
+        <li><time>{{ p.date | date: "%d/%m" }}</time> <a href="{{ p.url | relative_url }}">{{ p.title }}</a></li>
+      {% endfor %}
+    </ul>
+  </section>
+{% endfor %}

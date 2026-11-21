@@ -1,0 +1,6 @@
+# Cadastre aqui as playlists (séries de posts em ordem).
+# No post use:  playlist: <identificador>   e   playlist_order: <número>
+go-na-pratica:
+  name: Go na prática
+  desc: Do primeiro "hello world" ao deploy em container, passo a passo.
+  color: "#ffd23f"

@@ -1,0 +1,17 @@
+---
+layout: default
+title: Busca
+permalink: /busca/
+description: Busque posts por título, texto, categoria ou tag.
+---
+<header class="list-head">
+  <p class="eyebrow">PLAYER 1 PROCURA…</p>
+  <h1 class="page-title">Busca</h1>
+</header>
+<form class="search-form search-big" role="search" id="search-form" onsubmit="return false">
+  <input type="search" id="search-input" placeholder="Digite para buscar…" aria-label="Buscar" autocomplete="off" autofocus>
+</form>
+<p class="muted small" id="search-status" aria-live="polite"></p>
+<div class="list" id="search-results"></div>
+<script>window.ZOKAI_SEARCH_URL = "{{ '/search.json' | relative_url }}";</script>
+<script src="{{ '/assets/js/search.js' | relative_url }}" defer></script>
