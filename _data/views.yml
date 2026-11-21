@@ -1,7 +1,7 @@
 # slug do post -> visualizações (atualize com: ruby scripts/update_views.rb)
 # Valores de exemplo, apague quando ligar o GoatCounter.
-goroutines-sem-medo: 320
-docker-multi-stage-para-go: 210
-bem-vindo-ao-zokai: 150
-deploy-estatico-com-ci: 90
-pixel-art-para-iniciantes: 60
+# goroutines-sem-medo: 320
+# docker-multi-stage-para-go: 210
+# bem-vindo-ao-zokai: 150
+# deploy-estatico-com-ci: 90
+# pixel-art-para-iniciantes: 60

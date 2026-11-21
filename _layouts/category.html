@@ -3,7 +3,7 @@ layout: default
 ---
 <header class="list-head" style="--c: {{ page.term_color }}">
   <p class="eyebrow">{{ page.taxonomy | replace: 'category', 'CATEGORIA' | replace: 'tag', 'TAG' }}</p>
-  <h1 class="page-title"><span class="term-icon">{{ page.term_icon }}</span> {{ page.term_name }}</h1>
+  <h1 class="page-title">{% if page.term_icon != "" %}<span class="term-icon">{{ page.term_icon }}</span> {% endif %}{{ page.term_name }}</h1>
   <p class="lede">{{ page.term_desc }}</p>
   <p class="muted small">{{ page.total }} post{% if page.total != 1 %}s{% endif %}</p>
 </header>

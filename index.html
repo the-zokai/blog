@@ -41,13 +41,13 @@ body_class: is-home
   <div class="grid">{% for p in site.posts limit: 6 %}{% include post-card.html post=p %}{% endfor %}</div>
 </section>
 
-{% assign popular = site.posts | sort: "views" | reverse %}
+<!-- {% assign popular = site.posts | sort: "views" | reverse %}
 <section class="section">
   <div class="section-head">
     <h2 class="section-title">Mais lidos</h2>
     <a href="{{ '/mais-lidos/' | relative_url }}">ver ranking →</a>
   </div>
   <div class="grid">{% for p in popular limit: 6 %}{% include post-card.html post=p %}{% endfor %}</div>
-</section>
+</section> -->
 
 {% include newsletter.html %}

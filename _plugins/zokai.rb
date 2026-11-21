@@ -82,7 +82,7 @@ module Zokai
       cats_meta = site.data["categories"] || {}
 
       site.categories.each do |slug, posts|
-        meta = cats_meta[slug] || { "name" => slug.capitalize, "desc" => "", "color" => "#ff2a7a", "icon" => "◆" }
+        meta = cats_meta[slug] || { "name" => slug.capitalize, "desc" => "", "color" => "#ff2a7a", "icon" => "" }
         paginate(site, "categorias/#{slug}", "category", posts, per_page,
                  "taxonomy" => "category", "term" => slug, "term_name" => meta["name"],
                  "term_desc" => meta["desc"], "term_color" => meta["color"], "term_icon" => meta["icon"],
@@ -99,7 +99,7 @@ module Zokai
       list = site.categories.map do |slug, posts|
         meta = cats_meta[slug] || {}
         { "slug" => slug, "name" => meta["name"] || slug.capitalize, "desc" => meta["desc"],
-          "color" => meta["color"] || "#ff2a7a", "icon" => meta["icon"] || "◆", "count" => posts.size }
+          "color" => meta["color"] || "#ff2a7a", "icon" => meta["icon"] || "", "count" => posts.size }
       end
       site.data["category_list"] = list.sort_by { |c| [-c["count"], c["name"]] }
     end

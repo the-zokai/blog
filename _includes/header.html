@@ -6,7 +6,6 @@
     </a>
     <nav class="nav" id="site-nav" aria-label="Principal">
       {% assign path = page.url %}
-      <a href="{{ '/mais-lidos/' | relative_url }}" {% if path == '/mais-lidos/' %}aria-current="page"{% endif %}>Mais lidos</a>
       <a href="{{ '/playlists/' | relative_url }}" {% if path contains '/playlists' %}aria-current="page"{% endif %}>Playlists</a>
       <a href="{{ '/categorias/' | relative_url }}" {% if path contains '/categorias' %}aria-current="page"{% endif %}>Categorias</a>
       <a href="{{ '/posts/' | relative_url }}" {% if path == '/posts/' %}aria-current="page"{% endif %}>Todos os Posts</a>

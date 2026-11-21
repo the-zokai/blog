@@ -1,26 +1,28 @@
 # slug: nome, descrição, cor (usa as cores da logo)
-go:
-  name: Go
-  desc: Goroutines, ferramentas e o jeito Go de fazer as coisas.
-  color: "#2ee6b6"
-  icon: "▲"
-devops:
-  name: DevOps
-  desc: CI/CD, containers, infra como código e deploys sem medo.
-  color: "#ff2a7a"
-  icon: "◆"
-web:
-  name: Web
-  desc: Sites estáticos, front-end e performance.
-  color: "#b45cff"
-  icon: "■"
-jogos:
-  name: Jogos
-  desc: Pixel art, game dev e nostalgia de 8 bits.
-  color: "#ffd23f"
-  icon: "●"
-carreira:
-  name: Carreira
-  desc: Trabalho, aprendizado e sobrevivência no mundo tech.
-  color: "#5ac8fa"
-  icon: "★"
+bem-vindo:
+  name: Boas Vindas
+  desc: Uma categoria de Boas vindas para um blog que está nascendo :)
+  color: "#8f7cff"
+# go:
+#   name: Go
+#   desc: Goroutines, ferramentas e o jeito Go de fazer as coisas.
+#   color: "#2ee6b6"
+# devops:
+#   name: DevOps
+#   desc: CI/CD, containers, infra como código e deploys sem medo.
+#   color: "#ff2a7a"
+#   icon: "◆"
+# web:
+#   name: Web
+#   desc: Sites estáticos, front-end e performance.
+#   color: "#8f7cff"
+# # jogos:
+#   name: Jogos
+#   desc: Pixel art, game dev e nostalgia de 8 bits.
+#   color: "#ffd23f"
+#   icon: "●"
+# carreira:
+#   name: Carreira
+#   desc: Trabalho, aprendizado e sobrevivência no mundo tech.
+#   color: "#5ac8fa"
+#   icon: "★"
