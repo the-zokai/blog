@@ -139,3 +139,7 @@
 [data-style="cyber"] .highlight .m,[data-style="cyber"] .highlight .mi{color:#fcee0a}
 
 @media (prefers-reduced-motion:reduce){[data-style="cyber"] .hero-title{animation:none}}
+
+/* pílula de playlist: cor suave + brilho neon na camada aberta */
+[data-style="cyber"] .pl-pill{color:color-mix(in srgb,var(--c) 80%,var(--bg));border-color:color-mix(in srgb,var(--c) 65%,var(--bg))}
+[data-style="cyber"] .pl-pill:hover .pl-label,[data-style="cyber"] .pl-pill:focus-visible .pl-label,[data-style="cyber"] .pl-pill.is-open .pl-label{box-shadow:0 0 14px color-mix(in srgb,var(--c) 35%,transparent),4px 4px 0 var(--shadow)}

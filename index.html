@@ -47,11 +47,7 @@ body_class: is-home
     <h2 class="section-title">Mais lidos</h2>
     <a href="{{ '/mais-lidos/' | relative_url }}">ver ranking →</a>
   </div>
-  <ol class="rank">
-    {% for p in popular limit: 5 %}
-      <li><a href="{{ p.url | relative_url }}">{{ p.title }}</a>{% if p.views > 0 %}<span class="muted small">{{ p.views }} views</span>{% endif %}</li>
-    {% endfor %}
-  </ol>
+  <div class="grid">{% for p in popular limit: 6 %}{% include post-card.html post=p %}{% endfor %}</div>
 </section>
 
 {% include newsletter.html %}

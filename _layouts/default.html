@@ -3,7 +3,7 @@
 <head>
 {% include head.html %}
 </head>
-<body class="{{ page.body_class }}">
+<body class="{{ page.body_class }}{% if page.layout == 'post' %} is-post{% endif %}">
 <a class="skip" href="#main">Ir para o conteúdo</a>
 {% include header.html %}
 <main id="main" class="wrap">

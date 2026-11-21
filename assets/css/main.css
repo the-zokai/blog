@@ -213,3 +213,70 @@ mark{background:var(--yellow);color:#120a2b;padding:0 .15em}
 .playlist-list li:hover{border-color:var(--c)}
 .playlist-list a{display:grid;gap:.2rem;padding:.9rem 1rem .9rem 0;text-decoration:none;color:var(--text);flex:1}
 .playlist-list a:hover strong{color:var(--pink)}
+
+/* ---------- post: área de leitura maior e bem delimitada ---------- */
+body.is-post .wrap{width:min(1440px,100% - 2rem)}
+.post{max-width:1360px}
+.post-body{grid-template-columns:minmax(0,1fr);gap:2.5rem}
+@media (min-width:1000px){
+  .post-body{grid-template-columns:minmax(0,1fr) 250px;column-gap:4.5rem}   /* índice bem afastado do texto */
+  .toc{padding-left:1.4rem}
+}
+.post .prose{max-width:none}
+#post-content{
+  background:var(--surface);border:var(--px) solid var(--border);box-shadow:6px 6px 0 var(--shadow);
+  padding:clamp(1.25rem,4vw,3rem);font-size:1.12rem;line-height:1.75;position:relative;
+}
+#post-content>:first-child{margin-top:0}
+#post-content::after{              /* marca de fim do post */
+  content:"◼ FIM";display:block;text-align:center;margin-top:2.5rem;padding-top:1.25rem;
+  border-top:var(--px) dashed var(--border);font-family:var(--font-px);font-size:.6rem;color:var(--muted);letter-spacing:.1em;
+}
+.post-head{margin-bottom:2rem}
+
+/* ---------- playlist no post: recolhida, com uma única seta que gira ---------- */
+.playlist-box summary{list-style:none;display:flex;align-items:center;gap:.5rem}
+.playlist-box summary::-webkit-details-marker{display:none}
+.playlist-box summary::before{content:"▶";display:inline-block;font-size:.8em;transition:transform .15s}
+.playlist-box[open] summary::before{transform:rotate(90deg)}
+@media (prefers-reduced-motion:reduce){.playlist-box summary::before{transition:none}}
+[hidden]{display:none!important}
+
+/* ---------- playlist nos cards: ícone que abre uma camada SOBRE o texto (não empurra nada) ---------- */
+.card-top{container-type:inline-size;position:relative;display:flex;align-items:center;gap:.75rem;margin-bottom:.5rem;min-height:36px}
+.card-top .card-meta{margin:0}
+.card:hover,.card:focus-within,.card:has(.pl-pill.is-open){z-index:5}            /* a camada fica acima dos cards vizinhos */
+.pl-pill{--c:var(--yellow);position:absolute;right:0;top:0;z-index:3;display:grid;place-items:center;width:36px;height:36px;
+  color:var(--c);background:color-mix(in srgb,var(--c) 10%,var(--surface));border:2px solid var(--c);text-decoration:none;
+  font-size:.85rem;font-weight:700}
+.pl-arrow{position:relative;z-index:2;font-size:.8rem;pointer-events:none}
+.pl-label{position:absolute;right:-2px;top:-2px;z-index:1;box-sizing:border-box;min-height:36px;
+  width:max-content;max-width:min(300px,80vw);max-width:min(300px,100cqw);display:flex;align-items:flex-start;
+  padding:7px 42px 7px .9rem;background:color-mix(in srgb,var(--c) 22%,var(--surface));
+  border:2px solid;border-color:inherit;line-height:18px;white-space:normal;overflow-wrap:break-word;word-break:normal;
+  clip-path:inset(0 0 0 100%);transition:clip-path .4s steps(10)}     /* revela da direita p/ a esquerda; nomes longos quebram de linha */
+.pl-label b{flex:1 1 auto;min-width:0}                                   /* nome: quebra por palavra */
+.pl-label i{flex:none;font-style:normal;opacity:.75;margin-left:.6rem;white-space:nowrap}   /* nº fixo, colado na seta */
+.pl-pill:hover .pl-label,.pl-pill:focus-visible .pl-label,.pl-pill.is-open .pl-label{clip-path:inset(0)}
+.pl-pill:hover .pl-arrow,.pl-pill:focus-visible .pl-arrow,.pl-pill.is-open .pl-arrow{animation:pl-nudge .6s steps(2) infinite}
+@keyframes pl-nudge{50%{transform:translateX(2px)}}
+@media (prefers-reduced-motion:reduce){.pl-label{transition:none}.pl-pill:hover .pl-arrow,.pl-pill:focus-visible .pl-arrow{animation:none}}
+.featured .pl-pill{background:#0b0919}
+
+/* ---------- menu hambúrguer (≤900px, só com JS ativo) ---------- */
+.nav-toggle{display:none}
+.bars{display:grid;gap:4px;width:18px}
+.bars i{display:block;height:3px;background:currentColor;transition:transform .15s steps(3),opacity .15s steps(2)}
+.nav-toggle[aria-expanded="true"] .bars i:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.nav-toggle[aria-expanded="true"] .bars i:nth-child(2){opacity:0}
+.nav-toggle[aria-expanded="true"] .bars i:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+@media (max-width:900px){
+  .js .nav-toggle{display:grid}
+  .js .header-tools{margin-left:auto}
+  .js .nav{display:none;position:absolute;top:100%;left:0;right:0;width:auto;margin:0;flex-direction:column;flex-wrap:nowrap;
+    padding:.25rem 1rem 1rem;background:var(--bg);border-bottom:var(--px) solid var(--border);box-shadow:0 12px 0 #0007;overflow:visible;max-height:calc(100vh - 70px);overflow-y:auto}
+  .js .nav.is-open{display:flex}
+  .js .nav a{padding:1rem .5rem;border:0;border-bottom:2px dashed var(--border);font-size:.7rem;clip-path:none}
+  .js .nav a:last-child{border-bottom:0}
+}
+@media (prefers-reduced-motion:reduce){.bars i{transition:none}}

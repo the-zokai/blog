@@ -83,3 +83,10 @@
 [data-style="pixelpunk"] .playlist-box,[data-style="pixelpunk"] .playlist-list li{border-color:color-mix(in srgb,var(--c) 50%,var(--border))}
 [data-style="pixelpunk"] .playlist-box summary,[data-style="pixelpunk"] .playlist-box strong{color:color-mix(in srgb,var(--c) 80%,var(--text))}
 [data-style="pixelpunk"] .playlist-list li::before{background:color-mix(in srgb,var(--c) 80%,var(--bg))}
+
+/* código em bloco: sem faixa de destaque por linha, só o fundo do bloco */
+[data-style="pixelpunk"] .prose pre code{background:none;padding:0;color:inherit}
+
+/* pílula de playlist: cor suave + brilho neon na camada aberta */
+[data-style="pixelpunk"] .pl-pill{color:color-mix(in srgb,var(--c) 80%,var(--bg));border-color:color-mix(in srgb,var(--c) 65%,var(--bg))}
+[data-style="pixelpunk"] .pl-pill:hover .pl-label,[data-style="pixelpunk"] .pl-pill:focus-visible .pl-label,[data-style="pixelpunk"] .pl-pill.is-open .pl-label{box-shadow:0 0 14px color-mix(in srgb,var(--c) 35%,transparent),4px 4px 0 var(--shadow)}

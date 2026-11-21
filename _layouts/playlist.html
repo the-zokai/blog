@@ -3,7 +3,7 @@ layout: default
 ---
 <header class="list-head" style="--c: {{ page.playlist_color }}">
   <p class="eyebrow">PLAYLIST</p>
-  <h1 class="page-title"><span class="term-icon">▶</span> {{ page.playlist_name }}</h1>
+  <h1 class="page-title">{{ page.playlist_name }}</h1>
   <p class="lede">{{ page.playlist_desc }}</p>
   <p class="muted small">{{ page.playlist_posts_all.size }} post{% if page.playlist_posts_all.size != 1 %}s{% endif %} em ordem</p>
   {% if page.playlist_posts_all.size > 0 %}<a class="btn" href="{{ page.playlist_posts_all.first.url | relative_url }}">Começar do início</a>{% endif %}

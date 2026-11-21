@@ -1,10 +1,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script>try{var t=localStorage.getItem('zokai-theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+<script>document.documentElement.classList.add('js');try{var t=localStorage.getItem('zokai-theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
 <link rel="preload" href="{{ '/assets/fonts/press-start-2p.woff2' | relative_url }}" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="{{ '/assets/fonts/space-grotesk.woff2' | relative_url }}" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
-{% if site.zokai.style and site.zokai.style != "pixel" %}<link rel="stylesheet" href="{{ "/assets/css/" | append: site.zokai.style | append: ".css" | relative_url }}">{% endif %}
+<link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}?v={{ site.time | date: '%s' }}">
+{% if site.zokai.style and site.zokai.style != "pixel" %}<link rel="stylesheet" href="{{ "/assets/css/" | append: site.zokai.style | append: ".css" | relative_url }}?v={{ site.time | date: '%s' }}">{% endif %}
 <link rel="icon" type="image/png" href="{{ '/assets/img/logo.png' | relative_url }}">
 {% seo %}
 {% feed_meta %}

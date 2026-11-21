@@ -1,4 +1,21 @@
 (function () {
+  // ----- menu hambúrguer (telas pequenas) -----
+  var navBtn = document.getElementById('nav-toggle'), nav = document.getElementById('site-nav');
+  if (navBtn && nav) {
+    var setNav = function (open) {
+      nav.classList.toggle('is-open', open);
+      navBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      navBtn.setAttribute('aria-label', open ? 'Fechar menu' : 'Abrir menu');
+    };
+    navBtn.addEventListener('click', function () { setNav(!nav.classList.contains('is-open')); });
+    nav.addEventListener('click', function (e) { if (e.target.closest('a')) setNav(false); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setNav(false); });
+    document.addEventListener('click', function (e) { if (!e.target.closest('.site-header')) setNav(false); });
+    matchMedia('(min-width: 901px)').addEventListener('change', function (e) { if (e.matches) setNav(false); });
+  }
+})();
+
+(function () {
   var root = document.documentElement;
 
   // ----- tema claro/escuro -----
@@ -85,4 +102,41 @@
       copy.textContent = 'link copiado!'; setTimeout(function () { copy.textContent = 'Copiar link'; }, 1500);
     });
   });
+
+  // ----- filtro na página de playlists -----
+  var pf = document.getElementById('playlist-filter');
+  if (pf) {
+    var norm = function (t) { return (t || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, ''); };
+    var cards = document.querySelectorAll('#playlist-grid [data-search]');
+    var st = document.getElementById('playlist-status');
+    var q0 = new URLSearchParams(location.search).get('q');
+    if (q0) pf.value = q0;
+    var run = function () {
+      var terms = norm(pf.value).split(/\s+/).filter(Boolean), shown = 0;
+      cards.forEach(function (c) {
+        var hay = norm(c.dataset.search);
+        var ok = terms.every(function (t) { return hay.indexOf(t) > -1; });
+        c.hidden = !ok; if (ok) shown++;
+      });
+      st.textContent = terms.length ? (shown ? shown + (shown === 1 ? ' playlist encontrada' : ' playlists encontradas') : 'Nenhuma playlist encontrada.') : '';
+    };
+    pf.addEventListener('input', run); run();
+  }
+
+  // ----- playlist nos cards: em telas pequenas/toque, abre com clique (camada sobre o texto) -----
+  var coarse = matchMedia('(hover: none), (max-width: 900px)');
+  var closePills = function (except) {
+    document.querySelectorAll('.pl-pill.is-open').forEach(function (p) { if (p !== except) p.classList.remove('is-open'); });
+  };
+  document.addEventListener('click', function (e) {
+    var pill = e.target.closest('.pl-pill');
+    if (pill && coarse.matches && !pill.classList.contains('is-open')) {
+      e.preventDefault();               // 1º toque só abre a camada
+      closePills(pill);
+      pill.classList.add('is-open');
+      return;
+    }
+    if (!pill) closePills(null);        // toque fora fecha
+  });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closePills(null); });
 })();

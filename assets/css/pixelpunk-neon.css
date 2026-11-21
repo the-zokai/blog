@@ -147,3 +147,10 @@
 [data-style="pixelpunk-neon"] .chip.is-active{background:color-mix(in srgb,var(--c) 80%,var(--bg));color:#0e0b23}
 [data-style="pixelpunk-neon"] .cat-card{border-color:color-mix(in srgb,var(--c) 50%,var(--border))}
 [data-style="pixelpunk-neon"] .cat-icon{color:color-mix(in srgb,var(--c) 82%,var(--bg))}
+
+/* código em bloco: sem faixa de destaque por linha, só o fundo do bloco */
+[data-style="pixelpunk-neon"] .prose pre code{background:none;padding:0;color:inherit}
+
+/* pílula de playlist: cor suave + brilho neon na camada aberta */
+[data-style="pixelpunk-neon"] .pl-pill{color:color-mix(in srgb,var(--c) 80%,var(--bg));border-color:color-mix(in srgb,var(--c) 65%,var(--bg))}
+[data-style="pixelpunk-neon"] .pl-pill:hover .pl-label,[data-style="pixelpunk-neon"] .pl-pill:focus-visible .pl-label,[data-style="pixelpunk-neon"] .pl-pill.is-open .pl-label{box-shadow:0 0 14px color-mix(in srgb,var(--c) 35%,transparent),4px 4px 0 var(--shadow)}

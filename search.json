@@ -2,16 +2,35 @@
 layout: null
 sitemap: false
 ---
+{%- assign sep = "" -%}
 [
+{% for pl in site.data.playlist_list %}
+  {%- capture titles -%}{% for p in pl.posts %}{{ p.title }}. {% endfor %}{%- endcapture -%}
+  {{ sep }}{
+    "type": "playlist",
+    "title": {{ pl.name | jsonify }},
+    "url": {{ '/playlists/' | append: pl.id | append: '/' | relative_url | jsonify }},
+    "date": "",
+    "count": {{ pl.count }},
+    "categories": [],
+    "tags": [],
+    "description": {{ pl.desc | default: "" | jsonify }},
+    "content": {{ titles | normalize_whitespace | jsonify }}
+  }
+  {%- assign sep = "," -%}
+{% endfor %}
 {% for p in site.posts %}
-  {
+  {{ sep }}{
+    "type": "post",
     "title": {{ p.title | jsonify }},
     "url": {{ p.url | relative_url | jsonify }},
     "date": {{ p.date | date: "%d/%m/%Y" | jsonify }},
     "categories": {{ p.categories | jsonify }},
     "tags": {{ p.tags | jsonify }},
+    "playlist": {{ p.playlist_name | default: "" | jsonify }},
     "description": {{ p.description | default: p.excerpt | strip_html | replace: "\n", " " | normalize_whitespace | truncate: 160 | jsonify }},
     "content": {{ p.content | strip_html | replace: "\n", " " | normalize_whitespace | truncate: 4000 | jsonify }}
-  }{% unless forloop.last %},{% endunless %}
+  }
+  {%- assign sep = "," -%}
 {% endfor %}
 ]

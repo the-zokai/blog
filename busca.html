@@ -14,4 +14,4 @@ description: Busque posts por título, texto, categoria ou tag.
 <p class="muted small" id="search-status" aria-live="polite"></p>
 <div class="list" id="search-results"></div>
 <script>window.ZOKAI_SEARCH_URL = "{{ '/search.json' | relative_url }}";</script>
-<script src="{{ '/assets/js/search.js' | relative_url }}" defer></script>
+<script src="{{ '/assets/js/search.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>

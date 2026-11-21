@@ -24,8 +24,8 @@ body_class: is-post
   </header>
 
   {% if page.playlist_name %}
-  <details class="playlist-box" style="--c: {{ page.playlist_color }}" open>
-    <summary>▶ Playlist: <a href="{{ page.playlist_url | relative_url }}">{{ page.playlist_name }}</a> <span class="muted small">(post {{ page.playlist_pos }} de {{ page.playlist_total }})</span></summary>
+  <details class="playlist-box" style="--c: {{ page.playlist_color }}">
+    <summary>Playlist: <a href="{{ page.playlist_url | relative_url }}">{{ page.playlist_name }}</a> <span class="muted small">(post {{ page.playlist_pos }} de {{ page.playlist_total }})</span></summary>
     <ol>
       {% for pp in page.playlist_posts %}
         <li>{% if pp.url == page.url %}<strong aria-current="page">{{ pp.title }}</strong>{% else %}<a href="{{ pp.url | relative_url }}">{{ pp.title }}</a>{% endif %}</li>

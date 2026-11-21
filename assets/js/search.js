@@ -19,7 +19,7 @@
       if (!s) return 0;           // todos os termos precisam casar
       total += s;
     }
-    return total;
+    return total + (d.type === 'playlist' ? 2 : 0);
   }
 
   function snippet(d, terms) {
@@ -35,24 +35,31 @@
 
   function render(q) {
     var terms = norm(q).split(/\s+/).filter(Boolean);
-    if (!terms.length) { out.innerHTML = ''; status.textContent = docs.length + ' posts indexados.'; return; }
+    if (!terms.length) { out.innerHTML = ''; status.textContent = docs.length + ' itens indexados (posts e playlists).'; return; }
     var res = docs.map(function (d) { return { d: d, s: score(d, terms) }; })
       .filter(function (r) { return r.s > 0; })
       .sort(function (a, b) { return b.s - a.s; });
     status.textContent = res.length + (res.length === 1 ? ' resultado' : ' resultados') + ' para “' + q + '”';
     out.innerHTML = res.map(function (r) {
       var d = r.d;
+      if (d.type === 'playlist') {
+        return '<article class="card"><div class="card-meta"><span>Playlist</span><span>·</span><span>' + d.count + (d.count === 1 ? ' post' : ' posts') + '</span></div>' +
+          '<h3 class="card-title"><a href="' + esc(d.url) + '">' + esc(d.title) + '</a></h3>' +
+          '<p class="card-excerpt">' + snippet({ content: d.description + ' ' + d.content, description: d.description }, terms) + '</p>' +
+          '<div class="chips"><span class="chip chip-playlist" style="--c:#ffd23f">▶ playlist</span></div></article>';
+      }
+      var pl = d.playlist ? '<span class="chip chip-playlist" style="--c:#ffd23f">▶ ' + esc(d.playlist) + '</span>' : '';
       return '<article class="card"><div class="card-meta"><time>' + esc(d.date) + '</time></div>' +
         '<h3 class="card-title"><a href="' + esc(d.url) + '">' + esc(d.title) + '</a></h3>' +
         '<p class="card-excerpt">' + snippet(d, terms) + '</p>' +
-        '<div class="chips">' + d.categories.map(function (c) { return '<span class="chip">' + esc(c) + '</span>'; }).join('') + '</div></article>';
+        '<div class="chips">' + pl + d.categories.map(function (c) { return '<span class="chip">' + esc(c) + '</span>'; }).join('') + '</div></article>';
     }).join('');
   }
 
   fetch(window.ZOKAI_SEARCH_URL).then(function (r) { return r.json(); }).then(function (data) {
     docs = data.map(function (d) {
       d._title = norm(d.title);
-      d._cats = norm(d.categories.concat(d.tags).join(' '));
+      d._cats = norm(d.categories.concat(d.tags).concat(d.playlist ? [d.playlist] : []).join(' '));
       d._desc = norm(d.description);
       d._body = norm(d.content);
       return d;

@@ -9,9 +9,14 @@ description: Séries de posts para ler em ordem.
   <h1 class="page-title">Playlists</h1>
   <p class="lede">Séries de posts feitas para serem lidas em ordem.</p>
 </header>
-<div class="grid">
+<form class="search-form" role="search" onsubmit="return false">
+  <input type="search" id="playlist-filter" placeholder="Buscar playlists…" aria-label="Buscar playlists" autocomplete="off">
+</form>
+<p class="muted small" id="playlist-status" aria-live="polite"></p>
+<div class="grid" id="playlist-grid">
   {% for pl in site.data.playlist_list %}
-    <a class="card cat-card" style="--c: {{ pl.color }}" href="{{ '/playlists/' | append: pl.id | append: '/' | relative_url }}">
+    {%- capture hay -%}{{ pl.name }} {{ pl.desc }}{% for p in pl.posts %} {{ p.title }}{% endfor %}{%- endcapture -%}
+    <a class="card cat-card" data-search="{{ hay | strip | escape }}" style="--c: {{ pl.color }}" href="{{ '/playlists/' | append: pl.id | append: '/' | relative_url }}">
       <span class="cat-icon">▶</span>
       <h3 class="card-title">{{ pl.name }}</h3>
       <p class="card-excerpt">{{ pl.desc }}</p>
