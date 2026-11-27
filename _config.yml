@@ -1,6 +1,6 @@
 title: Zokai
 tagline: Código, bytes e uma raposa no meio da rede
-description: Blog do Zokai sobre programação, infra, jogos e cultura pixelada.
+description: Blog do Zokai sobre programação, infra, jogos, costura e pinceladas de cyberpunk.
 lang: pt-BR
 url: "https://blog.zokai.dev"
 baseurl: ""
@@ -32,7 +32,7 @@ exclude:
 
 # --- Opções do tema ---
 zokai:
-  style: pixelpunk-neon        # pixel | cyber | pixelpunk | pixelpunk-neon
+  style: pixelpunk-neon        # pixel | cyber | pixelpunk | pixelpunk-neon | ponto-cruz
   posts_per_page: 10        # usado nas listas de categoria/tag
   words_per_minute: 200
   # Contador de views privacy-friendly (https://www.goatcounter.com). Deixe vazio para desativar.

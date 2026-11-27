@@ -7,7 +7,7 @@ playlist: bem-vindo
 playlist_order: 1
 featured: true
 ---
-Oi, eu sou o Daniel, também conhecido como **Zokai**. Este é o primeiro post do blog, então vale uma apresentação rápida.
+Oi, eu sou o Daniel, e aqui me chamo de **Zokai** (criei carinho por esse nome depois de uma partidade RPG). Este é o primeiro post do blog, então vale uma apresentação rápida.
 
 ## Por que um blog?
 
@@ -18,8 +18,8 @@ Eu aprendo muito mais quando escrevo sobre o assunto. Tem coisa que estudei, err
 - **Código:** tutoriais curtos e diretos, principalmente de Go, Ruby e web.
 - **Infra e DevOps:** o que funciona em produção e o que aprendi quando não funcionou.
 - **Jogos:** porque nada é só trabalho por aqui.
-- **Carreira e comunidade:** bastidores de eventos, estudos e escolhas.
 - **Projetos pessoais:** do rascunho ao que for para o ar.
+- **Hobbies:** curto costura, bordado e quero começar algumas coisas de eletrônia 
 
 Alguns assuntos vão virar **playlists**: sequências de posts para ler em ordem, como um mini curso.
 

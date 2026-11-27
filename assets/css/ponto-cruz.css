@@ -1,0 +1,99 @@
+/* ZOKAI — PONTO CRUZ
+   Base = tema pixel (fontes, tamanhos, leitura, formas lisas). A costura aparece só como sussurro,
+   porque pixel e ponto cruz já são parentes: um "X" nos títulos de seção, a barra de leitura em ponto corrido e a linha de corte com tesoura no rodapé.
+   Cores = linhas de bordado sobre tecido escuro, sem brilho neon.
+   Ative com `zokai.style: ponto-cruz` no _config.yml. */
+:root[data-style="ponto-cruz"],
+:root[data-style="ponto-cruz"][data-theme="light"],
+:root[data-style="ponto-cruz"][data-theme="dark"]{
+  --bg:#12142a; --bg-2:#171a35; --surface:#1b1e3d; --surface-2:#252850;
+  --text:#e0dccf; --muted:#a2a6c4; --border:#323660; --shadow:#0008;
+  --pink:#df7fa9; --magenta:#b693e6; --purple:#7e72d8; --teal:#6cc3be; --yellow:#e0c068;
+  --link:#7fd0cb;
+  --thread:#e6dcc8;           /* fio cru, usado nos pespontos */
+  --grad:linear-gradient(135deg,#7a416b,#413f8a);
+  color-scheme:dark;
+}
+[data-style="ponto-cruz"] #theme-toggle{display:none}
+
+/* fundo: tecido liso, só um brilho muito suave nos cantos */
+[data-style="ponto-cruz"] body{
+  background:
+    radial-gradient(900px 500px at 90% -10%,#df7fa91a,transparent 62%),
+    radial-gradient(700px 500px at -10% 14%,#6cc3be14,transparent 62%),
+    var(--bg);
+  background-attachment:fixed;
+}
+
+/* títulos */
+[data-style="ponto-cruz"] .page-title,
+[data-style="ponto-cruz"] .post-title{color:var(--pink);text-shadow:3px 3px 0 #342a78}
+[data-style="ponto-cruz"] .hero-title{color:var(--pink);text-shadow:5px 5px 0 #342a78,10px 10px 0 #00000044}
+[data-style="ponto-cruz"] .blink{color:var(--teal)}
+[data-style="ponto-cruz"] .brand-name{color:var(--pink);text-shadow:3px 3px 0 #342a78}
+[data-style="ponto-cruz"] .footer-brand{text-shadow:3px 3px 0 #342a78}
+[data-style="ponto-cruz"] .list-head{--c:var(--pink)}
+[data-style="ponto-cruz"] .list-head .page-title{color:var(--c)}
+
+/* 1) o "X" do ponto cruz como marcador dos títulos de seção */
+[data-style="ponto-cruz"] .section-title::before{
+  content:"";display:inline-block;width:.85em;height:.85em;margin-right:.65rem;vertical-align:-.05em;
+  background:
+    linear-gradient(45deg,transparent 38%,var(--pink) 38% 62%,transparent 62%),
+    linear-gradient(-45deg,transparent 38%,var(--pink) 38% 62%,transparent 62%);
+}
+
+/* cabeçalho e rodapé: formas normais */
+[data-style="ponto-cruz"] .site-header{border-bottom-color:var(--border);box-shadow:0 2px 0 #6cc3be44}
+[data-style="ponto-cruz"] .nav a[aria-current="page"]{background:#6cc3be14}
+
+/* 2) rodapé: linha de corte com tesoura */
+[data-style="ponto-cruz"] .site-footer{position:relative;background:var(--bg-2);border-top:2px dashed color-mix(in srgb,var(--thread) 40%,transparent)}
+[data-style="ponto-cruz"] .site-footer::before{
+  content:"\2702\FE0E";position:absolute;top:-.95rem;left:clamp(1rem,4vw,3rem);padding:0 .5rem;
+  background:var(--bg);color:var(--muted);font-size:1.2rem;line-height:1.4;
+}
+
+/* cards: lisos, como no pixel; o pesponto só aparece ao passar o mouse */
+[data-style="ponto-cruz"] .card{border:2px solid var(--border);box-shadow:4px 4px 0 #0009}
+[data-style="ponto-cruz"] .card:hover{border-color:var(--pink);box-shadow:7px 7px 0 #342a78}
+[data-style="ponto-cruz"] .cat-card{border-color:color-mix(in srgb,var(--c) 45%,var(--border))}
+[data-style="ponto-cruz"] .cat-card:hover{border-color:var(--c);box-shadow:7px 7px 0 color-mix(in srgb,var(--c) 38%,#000)}
+[data-style="ponto-cruz"] .featured .card{background:var(--grad);border-color:#e0dccfaa}
+[data-style="ponto-cruz"] .featured .chip{background:#12142a}
+
+/* chips e botões: lisos, cores suaves */
+[data-style="ponto-cruz"] .chip{border-color:color-mix(in srgb,var(--c) 70%,var(--bg));background:color-mix(in srgb,var(--c) 10%,transparent);color:color-mix(in srgb,var(--c) 85%,var(--text))}
+[data-style="ponto-cruz"] .chip:hover,[data-style="ponto-cruz"] .chip.is-active{background:var(--c);color:#12142a}
+[data-style="ponto-cruz"] .btn{background:#2f7479;color:#f4f0e6;border-color:#12142a;box-shadow:4px 4px 0 #342a78}
+[data-style="ponto-cruz"] .btn:hover{color:#f4f0e6;box-shadow:2px 2px 0 #342a78}
+[data-style="ponto-cruz"] .btn-ghost{background:transparent;color:var(--text);border-color:var(--text);box-shadow:none}
+
+/* hero e busca */
+[data-style="ponto-cruz"] .hero-logo{filter:drop-shadow(0 0 28px #df7fa938)}
+[data-style="ponto-cruz"] .search-form input:focus{box-shadow:4px 4px 0 #6cc3be80}
+[data-style="ponto-cruz"] mark{background:var(--yellow);color:#12142a}
+
+/* ranking, playlists, post */
+[data-style="ponto-cruz"] .rank li{border-color:var(--border)}
+[data-style="ponto-cruz"] .playlist-box,[data-style="ponto-cruz"] .playlist-list li{box-shadow:4px 4px 0 #0009;border-color:color-mix(in srgb,var(--c) 55%,var(--border))}
+[data-style="ponto-cruz"] .playlist-box summary,[data-style="ponto-cruz"] .playlist-box strong{color:color-mix(in srgb,var(--c) 80%,var(--text))}
+[data-style="ponto-cruz"] .playlist-list li::before{background:color-mix(in srgb,var(--c) 80%,var(--bg));color:#12142a}
+[data-style="ponto-cruz"] .toc{border-left-color:var(--purple)}
+
+[data-style="ponto-cruz"] #post-content{border:2px solid var(--border);box-shadow:5px 5px 0 #0009}
+[data-style="ponto-cruz"] .prose blockquote{border-left-color:var(--pink)}
+[data-style="ponto-cruz"] .prose pre{background:#0c0e20;box-shadow:4px 4px 0 #342a78}
+[data-style="ponto-cruz"] .prose code{background:var(--surface-2)}
+[data-style="ponto-cruz"] .prose pre code{background:none;padding:0;color:inherit}
+
+/* barra de leitura em ponto corrido: costura enquanto você desce a página */
+[data-style="ponto-cruz"] .progress{
+  height:5px;background:repeating-linear-gradient(90deg,var(--pink) 0 10px,transparent 10px 16px);
+}
+
+[data-style="ponto-cruz"] .newsletter{border-color:#e0dccfaa}
+
+/* pílula de playlist */
+[data-style="ponto-cruz"] .pl-pill{color:color-mix(in srgb,var(--c) 80%,var(--bg));border-color:color-mix(in srgb,var(--c) 65%,var(--bg))}
+[data-style="ponto-cruz"] .pl-pill:hover .pl-label,[data-style="ponto-cruz"] .pl-pill:focus-visible .pl-label,[data-style="ponto-cruz"] .pl-pill.is-open .pl-label{box-shadow:4px 4px 0 var(--shadow)}
